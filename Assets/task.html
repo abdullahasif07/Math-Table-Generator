@@ -38,7 +38,7 @@
 
                                 <div class="col-sm-12 mb-4">
                                     <div class="form-group">
-                                        <input type="text" class="return_table_2 form-control"
+                                        <input id="limit" type="text" class="return_table_2 form-control"
                                             placeholder="Enter Limit">
                                     </div>
                                 </div>
@@ -60,11 +60,41 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
 
-        var input = document.getElementById("input");
-        input.addEventListener("keypress", function (event) {
-            
+
+
+        var n = document.getElementById("input");
+        var l = document.getElementById("limit");
+
+        n.addEventListener("keypress", function (event) {
+
             if (event.key === "Enter") {
-                my_table_fun();
+                let val = $('.return_table').val();
+                let val_2 = $('.return_table_2').val();
+                if (val_2=='')
+                {
+                    alert('Limit can not be left empty');
+                }
+                if (val < 1 || val_2 < 1) {
+                    alert('Number should be greater than 1')
+                }
+                else {
+                    my_table_fun(val, val_2);
+                }
+            }
+        });
+
+
+        l.addEventListener("keypress", function (event) {
+
+            if (event.key === "Enter") {
+                let val = $('.return_table').val();
+                let val_2 = $('.return_table_2').val();
+                if (val < 1 || val_2 < 1) {
+                    alert('Number should be greater than 1')
+                }
+                else {
+                    my_table_fun(val, val_2);
+                }
             }
         });
 
